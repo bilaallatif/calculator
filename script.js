@@ -30,6 +30,7 @@ function op_button_handler(button) {
         return;
     }
     if (button.id == "backspace") {
+        if (current_op == "") return;
         result.textContent = result.textContent.slice(0, -1);
         current_op = current_op.slice(0, -1);
         return;
