@@ -13,6 +13,7 @@ const op_buttons = document.querySelectorAll(".button.op");
 
 let current_op = "";
 let op_stack = [];
+let old_operator = {name: null, func: null};
 let operator = {name: null, func: null};
 
 function num_button_handler(button) {
@@ -24,6 +25,7 @@ function op_button_handler(button) {
     if (button.id == "clear") {
         result.textContent = "";
         history.textContent = "";
+        current_op = "";
         op_stack = [];
         operator.name = null;
         operator.func = null;
@@ -35,12 +37,17 @@ function op_button_handler(button) {
         current_op = current_op.slice(0, -1);
         return;
     }
+    if (button.id == "decimal") {
+        if (current_op.includes(".")) return;
+        result.textContent += ".";
+        current_op += ".";
+        return;
+    }
 
     if (current_op != "") {
-        op_stack.push(parseInt(current_op));
+        op_stack.push(parseFloat(current_op));
         current_op = "";
     }
-    console.log(op_stack);
 
     if (button.id == "equals") {
         let op2 = op_stack.pop();
@@ -55,6 +62,7 @@ function op_button_handler(button) {
     }
     
     result.textContent += ` ${button.textContent} `;
+    old_operator = {...operator};
     switch (button.id) {
         case "add":
             operator.name = "+";
@@ -74,6 +82,16 @@ function op_button_handler(button) {
             break;
         default:
             break;
+    }
+
+    if(op_stack.length == 2) {
+        let op2 = op_stack.pop();
+        let op1 = op_stack.pop();
+        let ans = Math.round(operate(op1, op2, old_operator.func) * 100)/100;
+        result.textContent = `${ans} ${operator.name} `;
+        history.textContent = `${op1} ${old_operator.name} ${op2} =`;
+        op_stack = [ans];
+        return;
     }
 }
 
