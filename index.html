@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-    <title>calculator</title>
+    <title>Calculator</title>
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"> -->
 </head>
 <body>
     <div class="header">
@@ -14,11 +16,28 @@
 
     <div id="calculator">
         <div id="screen">
-            TEST
+            <div id="history"></div>
+            <div id="result"></div>
         </div>
         <div id="buttons">
-            <button id="clear">C</button>
-            <button id="backspace">CE</button>
+            <button id="clear" class="button op">C</button>
+            <button id="backspace" class="button op">CE</button>
+            <button id="7" class="button num">7</button>
+            <button id="8" class="button num">8</button>
+            <button id="9" class="button num">9</button>
+            <button id="divide" class="button op">/</button>
+            <button id="4" class="button num">4</button>
+            <button id="5" class="button num">5</button>
+            <button id="6" class="button num">6</button>
+            <button id="multiply" class="button op">x</button>
+            <button id="1" class="button num">1</button>
+            <button id="2" class="button num">2</button>
+            <button id="3" class="button num">3</button>
+            <button id="subtract" class="button op">-</button>
+            <button id="0" class="button num">0</button>
+            <button id="decimal" class="button op">.</button>
+            <button id="equals" class="button op">=</button>
+            <button id="add" class="button op">+</button>
         </div>
     </div>
 
